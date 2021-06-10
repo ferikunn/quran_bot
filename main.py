@@ -68,6 +68,8 @@ def command_handler(message):
                     BOT.reply_to(message, "عدد صفحات القران 604")
             else:
                 BOT.reply_to(message, "الرجاء ادخال رقم الصفحة مثال:\nفتح صفحة 10")
+    elif text in ['سورس', 'السورس']:
+        BOT.reply_to(message, "https://github.com/Awiteb/quran_bot")
 
 @BOT.callback_query_handler(func=lambda call:True)
 def query_handler(call):
