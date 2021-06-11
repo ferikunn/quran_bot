@@ -78,7 +78,7 @@ def query_handler(call):
     if int(user_id) == requester:
         send_page(call, int(page_number))
     else:
-        BOT.answer_callback_query(f"هذا المصحف خاص بـ {first_name}")
+        BOT.answer_callback_query(call.id, f"هذا المصحف خاص بـ {first_name}")
 
 
 while True:
