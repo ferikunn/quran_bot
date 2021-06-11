@@ -21,35 +21,40 @@ def get_page(page_number, is_start):
     return int(page_number), page_url
 
 def send_page(user_id, first_name, chat_id, 
-                message_id, page_number, is_start=False, send=False):
+                message_id, page_number, is_start=False, 
+                    send=False, with_markup=True):
     markup = types.InlineKeyboardMarkup()
     button = types.InlineKeyboardButton
     page_number, page_url= get_page(page_number, is_start)
-    next_button = button(text="▶️الصفحة التالية", callback_data=f"{page_number + 1} {user_id} {first_name}")
-    back_button = button(text="◀️الصفحة السابقة", callback_data=f"{page_number - 1} {user_id} {first_name}")
-    start_button = button(text="فتح المصحف 🕋", callback_data=f"{1} {user_id} {first_name}")
-    buttons_list = [start_button] if is_start else [back_button, next_button]
+    next_button = button(text="▶️الصفحة التالية", callback_data=f"{page_number + 1} {user_id} {first_name}")\
+                    if with_markup else None
+    back_button = button(text="◀️الصفحة السابقة", callback_data=f"{page_number - 1} {user_id} {first_name}")\
+                    if with_markup else None
+    start_button = button(text="فتح المصحف 🕋", callback_data=f"{1} {user_id} {first_name}")\
+                    if with_markup else None
+    buttons_list = [start_button] if is_start else [back_button, next_button]\
+                    if with_markup else []
     markup.add(*buttons_list)
     if is_start or send:
         BOT.send_photo(chat_id, page_url if page_url else open('./img/start_img.jpg', 'rb'),
-                        reply_to_message_id=message_id,reply_markup=markup,
+                        reply_to_message_id=message_id,reply_markup=markup if with_markup else None,
                             caption=messages.get('start') if is_start else None)
     else:
         urllib.request.urlretrieve(page_url, f"{page_number}.png")
         with open(f"{page_number}.png", 'rb') as page:
             BOT.edit_message_media(types.InputMediaPhoto(page), chat_id, message_id, 
-                                        reply_markup=markup)
+                                        reply_markup=markup if with_markup else None)
         os.remove(f"{page_number}.png")
 
 def open_page(text, user_id, first_name, chat_id, 
-                message_id):
+                message_id, with_markup):
     s_text = text.split()
     user_info = [user_id, first_name, chat_id, message_id]
     if len(s_text) > 2 and s_text[2].isnumeric():
         page_number = int(s_text[2])
         if page_number > 0 and page_number < 604:
             send_page(*user_info, 
-                        page_number, send=True)
+                        page_number, send=True, with_markup=with_markup)
         else:
             raise Exception("عدد صفحات القران 604")
     else:
@@ -76,9 +81,9 @@ def command_handler(message):
                     page_number=1, is_start=text != "فتح القران", send=True)
     elif text.startswith('/help'):
         BOT.reply_to(message, messages.get('help'))
-    elif text.startswith('فتح صفحة'):
+    elif text.startswith(('فتح صفحه', 'جلب صفحه','فتح صفحة', 'جلب صفحة')):
         try:
-            open_page(text, *user_info)
+            open_page(text, *user_info, with_markup= not text.startswith(('جلب صفحه', 'جلب صفحة')))
         except Exception as err:
             BOT.reply_to(message, err)
     elif text in ['سورس', 'السورس']:
