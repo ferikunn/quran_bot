@@ -1,4 +1,4 @@
 {
     "start":"Welcome to the Quran browsing bot.The bot is an ongoing charity for me and you.\nI hope you will publish the bot\n To view the source,send a source\nto know the commands /help",
-    "help":"يمكنك من خلال هذا البوت فتح القران بارسال: فتح القران\nويمكنك فتح صفحة معينة بارسال فتح صفحة <رقم الصفحة>\nويمكنك جلب صفحة معينة بارسال جلب صفحة <رقم الصفحة>"
+    "help":"Through this bot you can open the Qur'an by sending: open the Qur'an\nand you can open a specific page by sending open page <page number>\nand you can fetch a specific page by sending fetch page <page number>"
 }
