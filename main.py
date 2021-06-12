@@ -58,7 +58,7 @@ def open_page(text, user_id, first_name, chat_id,
         else:
             raise Exception("عدد صفحات القران 604")
     else:
-        raise Exception("الرجاء ادخال رقم الصفحة مثال:\nفتح صفحة 10")
+        raise Exception("الرجاء ادخال رقم الصفحة مثال:\n%s 10" % (' '.join(s_text[:2])))
 
 def get_info(ob):
     if ob.__class__ == types.Message:
@@ -72,15 +72,23 @@ def get_info(ob):
     return [user_id, first_name, chat_id, message_id]
 
 
-@BOT.message_handler(func=lambda msg: msg.text)
+@BOT.message_handler(commands=['start', 'help'])
 def command_handler(message):
     text = str(message.text)
     user_info = get_info(message)
-    if text.startswith(('/start', 'فتح القران')):
+    if text.startswith(('/start')):
         send_page(*user_info,
-                    page_number=1, is_start=text != "فتح القران", send=True)
+                    page_number=1, is_start=True)
     elif text.startswith('/help'):
         BOT.reply_to(message, messages.get('help'))
+
+@BOT.message_handler(func=lambda msg:True, content_types=['text'])
+def message_handler(message):
+    text = str(message.text)
+    user_info = get_info(message)
+    if text.startswith('فتح القران'):
+        send_page(*user_info,
+                    page_number=1, send=True)
     elif text.startswith(('فتح صفحه', 'جلب صفحه','فتح صفحة', 'جلب صفحة')):
         try:
             open_page(text, *user_info, with_markup= not text.startswith(('جلب صفحه', 'جلب صفحة')))
