@@ -26,11 +26,11 @@ def send_page(user_id, first_name, chat_id,
     markup = types.InlineKeyboardMarkup()
     button = types.InlineKeyboardButton
     page_number, page_url= get_page(page_number, is_start)
-    next_button = button(text="▶️الصفحة التالية", callback_data=f"{page_number + 1} {user_id} {first_name}")\
+    next_button = button(text="▶️Halaman berikutnya", callback_data=f"{page_number + 1} {user_id} {first_name}")\
                     if with_markup else None
-    back_button = button(text="◀️الصفحة السابقة", callback_data=f"{page_number - 1} {user_id} {first_name}")\
+    back_button = button(text="◀️Halaman Sebelumnya"", callback_data=f"{page_number - 1} {user_id} {first_name}")\
                     if with_markup else None
-    start_button = button(text="فتح المصحف 🕋", callback_data=f"{1} {user_id} {first_name}")\
+    start_button = button(text="Pembukaan Al-Qur'an🕋", callback_data=f"{1} {user_id} {first_name}")\
                     if with_markup else None
     buttons_list = [start_button] if is_start else [back_button, next_button]\
                     if with_markup else []
