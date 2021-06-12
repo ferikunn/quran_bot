@@ -56,9 +56,9 @@ def open_page(text, user_id, first_name, chat_id,
             send_page(*user_info, 
                         page_number, send=True, with_markup=with_markup)
         else:
-            raise Exception("عدد صفحات القران 604")
+            raise Exception("Jumlah halaman Al-Qur'an adalah 604")
     else:
-        raise Exception("الرجاء ادخال رقم الصفحة مثال:\n%s 10" % (' '.join(s_text[:2])))
+        raise Exception("Silakan masukkan nomor halaman Contoh:\n%s 10" % (' '.join(s_text[:2])))
 
 def get_info(ob):
     if ob.__class__ == types.Message:
@@ -86,16 +86,16 @@ def command_handler(message):
 def message_handler(message):
     text = str(message.text)
     user_info = get_info(message)
-    if text.startswith('فتح القران'):
+    if text.startswith('Buka Al-Qur'an'):
         send_page(*user_info,
                     page_number=1, send=True)
-    elif text.startswith(('فتح صفحه', 'جلب صفحه','فتح صفحة', 'جلب صفحة')):
+    elif text.startswith(('buka halaman', 'ambil halaman', 'buka halaman', 'ambil halaman')):
         try:
-            open_page(text, *user_info, with_markup= not text.startswith(('جلب صفحه', 'جلب صفحة')))
+            open_page(text, *user_info, with_markup= not text.startswith(('ambil halaman', 'ambil halaman')))
         except Exception as err:
             BOT.reply_to(message, err)
-    elif text in ['سورس', 'السورس']:
-        BOT.reply_to(message, "https://github.com/Awiteb/quran_bot")
+    elif text in ['sumber', 'sumber']:
+        BOT.reply_to(message, "https://github.com/ferikunn/quran_bot")
 
 @BOT.callback_query_handler(func=lambda call:True)
 def query_handler(call):
@@ -106,7 +106,7 @@ def query_handler(call):
         send_page(*user_info, 
                     int(page_number), is_start=False)
     else:
-        BOT.answer_callback_query(call.id, f"هذا المصحف خاص بـ {first_name}")
+        BOT.answer_callback_query(call.id, f"Al-Qur'an ini untuk {first_name}")
 
 
 while True:
