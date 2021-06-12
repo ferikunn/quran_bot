@@ -1,4 +1,4 @@
 {
     "start":"Selamat datang di bot penjelajahan Quran.Bot ini adalah amal yang berkelanjutan untuk saya dan Anda.\nSaya harap Anda akan mempublikasikan bot\nUntuk melihat sumbernya, kirim sumber\nuntuk mengetahui perintah /help",
-    "help":"Through this bot you can open the Qur'an by sending: open the Qur'an\nand you can open a specific page by sending open page <page number>\nand you can fetch a specific page by sending fetch page <page number>"
+    "help":"Melalui bot ini Anda dapat membuka Al-Qur'an dengan mengirimkan: buka Al-Qur'an\nDan Anda dapat membuka halaman tertentu dengan mengirimkan halaman terbuka <nomor halaman>\nDan Anda dapat mengambil halaman tertentu dengan mengirim halaman pengambilan <nomor halaman>"
 }
