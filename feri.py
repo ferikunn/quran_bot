@@ -6,7 +6,7 @@ import time
 import json
 import os
 
-TOKEN = ""
+TOKEN = "1762933032:AAFCf4sxrrxRxaYUcgRGsyYnjn_2cXXCK3Y"
 BOT = telebot.TeleBot(TOKEN)
 
 PAGES_URL = "http://mp3quran.net/api/quran_pages_arabic/"
