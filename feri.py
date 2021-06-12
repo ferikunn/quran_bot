@@ -86,7 +86,7 @@ def command_handler(message):
 def message_handler(message):
     text = str(message.text)
     user_info = get_info(message)
-    if text.startswith('Buka Al-Qur'an'):
+    if text.startswith('Buka Al-Quran'):
         send_page(*user_info,
                     page_number=1, send=True)
     elif text.startswith(('buka halaman', 'ambil halaman', 'buka halaman', 'ambil halaman')):
