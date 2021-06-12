@@ -1,4 +1,4 @@
 {
-    "start":"اهلا بك في بوت تصفح القران، البوت صدقة جارية لي ولكم\nاتمنى ان تنشر البوت\nللاطلاع على السورس ارسل سورس\nللمعرفة الاوامر /help",
+    "start":"Welcome to the Quran browsing bot.The bot is an ongoing charity for me and you.\nI hope you will publish the bot\n To view the source,send a source\nto know the commands /help",
     "help":"يمكنك من خلال هذا البوت فتح القران بارسال: فتح القران\nويمكنك فتح صفحة معينة بارسال فتح صفحة <رقم الصفحة>\nويمكنك جلب صفحة معينة بارسال جلب صفحة <رقم الصفحة>"
 }
